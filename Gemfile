@@ -16,6 +16,8 @@ gem "bootsnap", require: false
 gem "bootstrap"
 gem 'jquery-rails'
 gem 'devise'
+gem 'i18n'
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end

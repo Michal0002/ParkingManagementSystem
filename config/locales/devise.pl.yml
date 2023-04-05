@@ -1,0 +1,52 @@
+pl:
+  errors:
+    messages:
+      not_saved:
+        one: "Formularz zawiera 1 błąd"
+        other: "Formularz wypełniony niepoprawnie: %{count} błędy"
+  activerecord:
+    attributes:
+      user:
+        first_name: "Imię"
+        last_name: "Nazwisko"
+        email: "Adres email"
+        password: "Hasło"
+        password_confirmation: "Hasła"
+        phone: "Numer telefonu"
+    errors:
+      models:
+        user:
+          attributes:
+            email: 
+              taken: "jest już zajęty"
+              blank: "nie może być pusty"
+              invalid: "Nieprawidłowy format email"
+            password:
+              blank: "nie może być puste"
+              too_short: "jest zbyt krótkie (minimum to %{count} znaków)"
+              confirmation: "nie pasuje"
+            password_confirmation:
+              blank: "nie może być puste"
+              confirmation: "do siebie nie pasują"
+            first_name:
+              blank: "nie może być puste"
+            last_name:
+              blank: "nie może być puste"
+            phone:
+              blank: "nie może być pusty"
+  devise:
+    failure:
+      invalid: "Nieprawidłowe dane logowania."
+      unauthenticated: "Musisz się zalogować lub zarejestrować, aby przejść dalej."
+      unconfirmed: "Twoje konto nie zostało jeszcze potwierdzone. Sprawdź skrzynkę pocztową i postępuj zgodnie z instrukcjami, aby je aktywować."
+      locked: "Twoje konto jest zablokowane. Skontaktuj się z administratorem, aby uzyskać więcej informacji."
+      not_found_in_database: "Nie znaleziono użytkownika o podanym adresie email."
+      user:
+        already_authenticated: "Jesteś już zalogowany."
+    registrations:
+      signed_up: 'Pomyślnie zarejestrowano!'
+    sessions:
+      signed_out: "Zostałeś wylogowany."
+    passwords:
+      send_instructions: "Instrukcje wysłane na email."
+      updated: "Hasło zostało zmienione."

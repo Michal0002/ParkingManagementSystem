@@ -251,6 +251,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  i18n
   importmap-rails
   jbuilder
   jquery-rails
