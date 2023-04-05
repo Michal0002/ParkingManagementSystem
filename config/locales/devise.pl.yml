@@ -2,8 +2,8 @@ pl:
   errors:
     messages:
       not_saved:
-        one: "Formularz zawiera 1 błąd"
-        other: "Formularz wypełniony niepoprawnie: %{count} błędy"
+        one: "Formularz zawiera błąd"
+        other: "Formularz wypełniony niepoprawnie: %{count} błędów"
   activerecord:
     attributes:
       user:
@@ -12,6 +12,7 @@ pl:
         email: "Adres email"
         password: "Hasło"
         password_confirmation: "Hasła"
+        current_password: "Hasło"
         phone: "Numer telefonu"
     errors:
       models:
@@ -28,10 +29,14 @@ pl:
             password_confirmation:
               blank: "nie może być puste"
               confirmation: "do siebie nie pasują"
+            current_password:
+              blank: "nie może być puste"
             first_name:
               blank: "nie może być puste"
+              too_short: "jest zbyt krótkie (minimum to %{count} znaków)"
             last_name:
               blank: "nie może być puste"
+              too_short: "jest zbyt krótkie (minimum to %{count} znaków)"
             phone:
               blank: "nie może być pusty"
   devise:
@@ -47,6 +52,7 @@ pl:
       signed_up: 'Pomyślnie zarejestrowano!'
     sessions:
       signed_out: "Zostałeś wylogowany."
+      signed_in: "Zostałeś zalogowany poprawnie."
     passwords:
       send_instructions: "Instrukcje wysłane na email."
       updated: "Hasło zostało zmienione."

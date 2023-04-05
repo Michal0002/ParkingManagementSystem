@@ -1,5 +1,31 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
 
-<%= button_to "logout", destroy_user_session_path, method: :delete  %>
-<%= link_to "sign in", new_user_session_path %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="text-center my-5">Parking Management System</h1>
+    <% if current_user %>
+        <% if current_user.role == "client" %>
+          <div class="form-container">
+            <div class="form-box">
+              <%= link_to "Wykonaj rezerwację", root_path, class: "btn btn-primary btn-block mb-3" %>
+              <%= link_to "Historia rezerwacji parkingowej", root_path, class: "btn btn-primary btn-block mb-3" %>
+            </div>
+          </div>
+        <% elsif current_user.role == "worker" %>
+          <div class="form-container">
+            <div class="form-box">
+              <%= link_to "Zarządzaj parkingiem", root_path, class: "btn btn-primary btn-block mb-3" %>
+              <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary btn-block" %>
+            </div>
+          </div>
+        <% else %>
+          <div class="form-container">
+            <div class="form-box">
+                <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
