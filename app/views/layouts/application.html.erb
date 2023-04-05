@@ -11,16 +11,16 @@
   </head>
 
   <body>
-    <% if flash[:notice] %>
-          <div class="alert alert-success" role="alert">
-            <p class="notice"><%= notice %></p>
-          </div>
-        <% end %>
-        <% if flash[:alert]%>
-          <div class="alert alert-warning" role="alert">
-            <p class="alert"><%= alert %></p>
-          </div>
-    <% end %>
+      <% if flash[:notice] %>
+        <div class="alert alert-success fixed-top" role="alert">
+          <p class="notice my-0"><%= notice %></p>
+        </div>
+      <% end %>
+      <% if flash[:alert]%>
+        <div class="alert alert-warning fixed-top" role="alert">
+          <p class="alert my-0"><%= alert %></p>
+        </div>
+      <% end %>
     <%= yield %>
   </body>
 </html>
