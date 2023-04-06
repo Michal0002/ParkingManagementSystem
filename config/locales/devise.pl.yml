@@ -49,7 +49,7 @@ pl:
       user:
         already_authenticated: "Jesteś już zalogowany."
     registrations:
-      signed_up: 'Pomyślnie zarejestrowano!'
+      signed_up: 'Pomyślnie zarejestrowano. Sprawdź swoją skrzynkę pocztową.'
     sessions:
       signed_out: "Zostałeś wylogowany."
       signed_in: "Zostałeś zalogowany poprawnie."

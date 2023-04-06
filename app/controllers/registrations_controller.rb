@@ -19,7 +19,11 @@ class RegistrationsController < Devise::RegistrationsController
       render "edit"
     end
   end
-  
+  def create
+    super do |resource|
+      UserMailer.welcome_email(resource).deliver_now
+    end
+  end
   private
   
   def user_params
