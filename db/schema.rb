@@ -10,7 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_05_182533) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_07_191655) do
+  create_table "parking_spaces", force: :cascade do |t|
+    t.integer "parking_id", null: false
+    t.string "zone"
+    t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parking_id"], name: "index_parking_spaces_on_parking_id"
+  end
+
+  create_table "parking_spots", force: :cascade do |t|
+    t.string "name"
+    t.string "region"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "available", default: true
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.date "reservation_date"
+    t.integer "reservation_time"
+    t.string "status"
+    t.integer "user_id", null: false
+    t.integer "parking_spot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parking_spot_id"], name: "index_reservations_on_parking_spot_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -27,4 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_182533) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "parking_spaces", "parkings"
+  add_foreign_key "reservations", "parking_spots"
+  add_foreign_key "reservations", "users"
 end

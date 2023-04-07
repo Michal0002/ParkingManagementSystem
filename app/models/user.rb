@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  has_many :reservations
+
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
   validates :email, presence: true, uniqueness: true
@@ -14,7 +17,9 @@ class User < ApplicationRecord
     self.role ||= :client
   end
 
-
+  def reservations
+    Reservation.where(user_id: self.id)
+  end
   private
 
   def send_welcome_email
