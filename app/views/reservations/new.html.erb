@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Rezerwacja wizyty</h3>
+          <h3 class="card-title">Rezerwacja miejsca parkingowego</h3>
         </div>
         <div class="card-body">
           <%= form_for @reservation do |f| %>
@@ -46,10 +46,13 @@
               <%= f.select :reservation_time, options_for_select([['15 minut', 15], ['30 minut', 30], ['Więcej niż 60 minut', 60]]), { include_blank: true }, { class: 'form-control' } %>
 
             </div>
-
+<br/>
             <%= f.submit "Zarezerwuj", class: "btn btn-primary btn-block mb-3" %>
           <% end %>
         </div>
+            <div class="card-footer">
+      <%= link_to "Powrót", root_path, class: "btn btn-secondary" %>
+    </div>
       </div>
     </div>
   </div>

@@ -1,4 +1,13 @@
-<p>Name: <%= @contact[:name] %></p>
-<p>Email: <%= @contact[:email] %></p>
-<p>Message:</p>
-<p><%= @contact[:message] %></p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Pojawiła się nowa wiadomość przesłana z formularza kontaktowego serwisu - Parking Management System!</h1>
+    <p> Wiadomość: </p>
+    <p><b>Nadawca: </b> <%= @contact[:name] %></p> 
+    <p><b>Adres mailowy nadawcy:</b> <%= @contact[:email] %></p> 
+    <p><b>Treść wiadomości: </b><%= @contact[:message] %> </p>
+</body>
+</html>

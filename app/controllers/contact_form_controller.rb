@@ -10,7 +10,7 @@ class ContactFormController < ApplicationController
       render :new
     else
       ContactMailer.contact_email(@contact).deliver_now
-      flash[:notice] = "Your message has been sent!"
+      flash[:notice] = "Dziękujemy za wiadomość, odpowiemy najszybciej jak to możliwe."
       redirect_to root_path
     end
   end
