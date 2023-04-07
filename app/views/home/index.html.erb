@@ -7,6 +7,7 @@
           <div class="form-container">
             <div class="form-box">
               <%= link_to "Wykonaj rezerwację", new_reservation_path, class: "btn btn-primary btn-block mb-3" %>
+              <%= link_to "Rezerwacje parkingowe", reservations_current_path, class: "btn btn-primary btn-block mb-3" %>
               <%= link_to "Historia rezerwacji parkingowej", root_path, class: "btn btn-primary btn-block mb-3" %>
             </div>
           </div>
@@ -29,25 +30,3 @@
   </div>
 <% end %>
 
-<% if @reservations.any? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Nazwa miejsca parkingowego</th>
-        <th>Data rezerwacji</th>
-        <th>Godzina rezerwacji</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @reservations.each do |reservation| %>
-        <tr>
-          <td><%= reservation.parking_spot.name %></td>
-          <td><%= reservation.reservation_date.strftime("%d-%m-%Y") %></td>
-          <td><%= reservation.reservation_time %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>Brak rezerwacji do wyświetlenia.</p>
-<% end %>

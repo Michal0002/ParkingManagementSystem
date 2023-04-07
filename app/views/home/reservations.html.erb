@@ -1,0 +1,27 @@
+<% if @reservations.any? %>
+  <table <div class="card text-white bg-primary">
+    <img class="card-img-top" src="holder.js/100px180/" alt="Title">
+    <div class="card-body">
+      <h4 class="card-title">Title</h4>
+       <thead>
+      <tr>
+        <th>Nazwa miejsca parkingowego</th>
+        <th>Data rezerwacji</th>
+        <th>Godzina rezerwacji</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reservations.each do |reservation| %>
+        <tr>
+          <td><%= reservation.parking_spot.name %></td>
+          <td><%= reservation.reservation_date.strftime("%d-%m-%Y") %></td>
+          <td><%= reservation.reservation_time %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Brak rezerwacji do wyświetlenia.</p>
+    </div>
+  </div>>
+<% end %>
