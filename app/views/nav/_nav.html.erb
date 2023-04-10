@@ -9,13 +9,13 @@
         <% if current_user %>
           <% if current_user.role == "client" %>
             <li class="nav-item">
-              <%= link_to "Zarezerwuj miejsce parkingowe", root_path, class: "nav-link" %>
+              <%= link_to "Zarezerwuj miejsce parkingowe", new_reservation_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
               <%= link_to "Twoje rezerwacje", reservations_current_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Historia rezerwacji parkingowej", contact_path, class: "nav-link" %>
+              <%= link_to "Historia rezerwacji parkingowej", reservations_history_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
               <%= link_to "Kontakt", contact_path, class: "nav-link" %>

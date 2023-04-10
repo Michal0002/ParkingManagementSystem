@@ -5,7 +5,8 @@
         <div class="card-header">
           <h3 class="card-title">Rezerwacja miejsca parkingowego</h3>
         </div>
-        <div class="card-body">
+<div class="card-body">
+  <%= render "errors/errors" %>
           <%= form_for @reservation do |f| %>
             <% if current_user.employee? %>
               <div class="form-group">
@@ -13,10 +14,47 @@
                 <%= f.select :user_id, options_for_select(User.client.map{ |u| [u.full_name, u.id] }), {}, class: "form-select" %>
               </div>
             <% else %>
-              <div class="form-group">
-                <%= f.label :parking_spot_id, "Miejsce", class: "form-label" %>
-                <%= f.select :parking_spot_id, options_for_select(ParkingSpot.where(available: true).map{ |ps| [ps.name, ps.id] }), {}, class: "form-select" %>
-              </div>
+<div class="form-group">
+  <%= f.label :parking_location, "Lokalizacja parkingu", class: "form-label" %>
+  <%= f.select :parking_location, options_for_select(["Parking A", "Parking B"]), {}, class: "form-select" %>
+</div>
+
+<div id="parking-spots" style="display: none;">
+  <div class="form-group">
+    <%= f.label :parking_spot_id, "Miejsce parkingowe", class: "form-label" %>
+    <%= f.select :parking_spot_id, options_for_select([]), {}, class: "form-select" %>
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+  $("#reservation_parking_location").change(function() {
+    var location = $(this).val();
+    if (location == "Parking A" || location == "Parking B") {
+      $.ajax({
+        url: "/parking_spots",
+        type: "GET",
+        dataType: "json",
+        data: { location: location },
+        success: function(data) {
+          var options = data.map(function(parkingSpot) {
+            return [parkingSpot.name, parkingSpot.id];
+          });
+          $("#reservation_parking_spot_id").empty();
+          $("#reservation_parking_spot_id").append($("<option>").val("").text("Wybierz miejsce"));
+          $.each(options, function(i, option) {
+            $("#reservation_parking_spot_id").append($("<option>").val(option[1]).text(option[0]));
+          });
+          $("#parking-spots").show();
+        }
+      });
+    } else {
+      $("#reservation_parking_spot_id").empty();
+      $("#parking-spots").hide();
+    }
+  });
+});
+</script>
 
               <%= f.hidden_field :user_id, value: current_user.id %>
 
@@ -34,18 +72,27 @@
                 <%= f.label :phone, "Telefon", class: "form-label" %>
                 <%= f.text_field :phone, value: current_user.phone, class: "form-control" %>
               </div>
+              
+              <div class="form-group">
+                <%= f.label :license_plate, "Numer tablicy rejestracyjnej", class: "form-label" %>
+                <%= f.text_field :license_plate, class: "form-control" %>
+              </div>
+              
             <% end %>
 
             <div class="form-group">
               <%= f.label :reservation_date, "Rezerwacja na dzień", class: "form-label" %>
               <%= f.date_field :reservation_date,  value: Date.today, class: "form-control" %>
-            </div>
-
+            </div> <br/>
             <div class="form-group">
-              <%= f.label :reservation_time, "Czas rezerwacji <i> orientacyjnie </i>".html_safe, class: "form-label" %>
-              <%= f.select :reservation_time, options_for_select([['15 minut', 15], ['30 minut', 30], ['Więcej niż 60 minut', 60]]), { include_blank: true }, { class: 'form-control' } %>
-
+              <%= f.label :reservation_time, "Godzina", class: "form-label" %>
+              <%= f.time_select :reservation_time, { class: 'form-control' } %>
             </div>
+            <div class="form-group">
+              <%= f.label :duration, "Czas rezerwacji <i> orientacyjnie </i>".html_safe, class: "form-label" %>
+              <%= f.select :duration, options_for_select([['15 minut', 15], ['30 minut', 30], ['Więcej niż 60 minut', 60]]), { include_blank: true }, { class: 'form-control' } %>
+            </div>
+
 <br/>
             <%= f.submit "Zarezerwuj", class: "btn btn-primary btn-block mb-3" %>
           <% end %>

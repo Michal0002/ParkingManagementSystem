@@ -1,19 +1,12 @@
 class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :parking_spot
+  accepts_nested_attributes_for :user
 
-  validates :reservation_date, presence: true
-  validates :reservation_time, presence: true
-  validates :status, presence: true
-  validates :user_id, presence: true
-  validates :parking_spot_id, presence: true
-  enum status: [:accepted, :waiting_for_accept, :canceled, :completed]
+  validates :reservation_date,:reservation_time,:status, :license_plate,:user_id,:parking_spot_id, :duration, presence: true
+  validates :license_plate, format: { with: /\A[A-Z]{2}-\d{4}\z/ }
 
-  before_validation :set_default_status
+  enum :status, [:accepted, :waiting_for_accept, :canceled, :completed], default: :waiting_for_accept
 
-  private
 
-  def set_default_status
-    self.status ||= 'waiting_for_accept'
-  end
 end

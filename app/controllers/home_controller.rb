@@ -4,7 +4,9 @@ class HomeController < ApplicationController
   def reservations
     @reservations = current_user.reservations
   end
-  
+  def reservations_current
+    @reservations = current_user.reservations
+  end
   def contact
     @contact_form = ContactForm.new
   end

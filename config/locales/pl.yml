@@ -1,0 +1,19 @@
+pl:
+  activerecord:
+    attributes:
+      user:
+        license_plate: "Numer tablicy rejestracyjnej"
+        duration: "Czas rezerwacji"
+      reservation:
+        license_plate: "Numer tablicy rejestracyjnej"
+        duration: "Czas rezerwacji"
+    errors:
+      models:
+        reservation:
+          attributes:
+            license_plate:
+              blank: "jest wymagany"
+              invalid: "jest w nieprawidłowym formacie -> XX-1234"
+            duration:
+              blank: "jest wymagany"
+              

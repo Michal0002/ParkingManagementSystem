@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_07_191655) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_10_105559) do
+  create_table "parking_regions", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "parking_spaces", force: :cascade do |t|
     t.integer "parking_id", null: false
     t.string "zone"
@@ -30,12 +37,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_191655) do
 
   create_table "reservations", force: :cascade do |t|
     t.date "reservation_date"
-    t.integer "reservation_time"
-    t.string "status"
+    t.time "reservation_time"
+    t.integer "status"
     t.integer "user_id", null: false
     t.integer "parking_spot_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "duration"
+    t.string "license_plate"
     t.index ["parking_spot_id"], name: "index_reservations_on_parking_spot_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
