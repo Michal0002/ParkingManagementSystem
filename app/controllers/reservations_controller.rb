@@ -3,6 +3,8 @@ class ReservationsController < ApplicationController
   def new
     @reservation = Reservation.new
     @parking_spots = ParkingSpot.all
+
+
     @errors = flash[:errors] || []
 
   end

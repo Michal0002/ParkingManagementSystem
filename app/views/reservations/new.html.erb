@@ -14,47 +14,6 @@
                 <%= f.select :user_id, options_for_select(User.client.map{ |u| [u.full_name, u.id] }), {}, class: "form-select" %>
               </div>
             <% else %>
-<div class="form-group">
-  <%= f.label :parking_location, "Lokalizacja parkingu", class: "form-label" %>
-  <%= f.select :parking_location, options_for_select(["Parking A", "Parking B"]), {}, class: "form-select" %>
-</div>
-
-<div id="parking-spots" style="display: none;">
-  <div class="form-group">
-    <%= f.label :parking_spot_id, "Miejsce parkingowe", class: "form-label" %>
-    <%= f.select :parking_spot_id, options_for_select([]), {}, class: "form-select" %>
-  </div>
-</div>
-
-<script>
-$(document).ready(function() {
-  $("#reservation_parking_location").change(function() {
-    var location = $(this).val();
-    if (location == "Parking A" || location == "Parking B") {
-      $.ajax({
-        url: "/parking_spots",
-        type: "GET",
-        dataType: "json",
-        data: { location: location },
-        success: function(data) {
-          var options = data.map(function(parkingSpot) {
-            return [parkingSpot.name, parkingSpot.id];
-          });
-          $("#reservation_parking_spot_id").empty();
-          $("#reservation_parking_spot_id").append($("<option>").val("").text("Wybierz miejsce"));
-          $.each(options, function(i, option) {
-            $("#reservation_parking_spot_id").append($("<option>").val(option[1]).text(option[0]));
-          });
-          $("#parking-spots").show();
-        }
-      });
-    } else {
-      $("#reservation_parking_spot_id").empty();
-      $("#parking-spots").hide();
-    }
-  });
-});
-</script>
 
               <%= f.hidden_field :user_id, value: current_user.id %>
 
