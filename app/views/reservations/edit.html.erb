@@ -1,2 +1,76 @@
-<h1>Reservations#edit</h1>
-<p>Find me in app/views/reservations/edit.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center align-items-center" style="height: 100vh;">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Edycja rezerwacji miejsca parkingowego</h3>
+        </div>
+        <div class="card-body">
+          <%= render "errors/errors" %>
+          <%= form_for @reservation do |f| %>
+            <% if current_user.employee? %>
+              <div class="form-group">
+                <%= f.label :user_id, class: "form-label" %>
+                <%= f.select :user_id, options_for_select(User.client.map{ |u| [u.full_name, u.id] }), {}, class: "form-select" %>
+              </div>
+            <% else %>
+              <%= f.label :region_id, "Region parkingu:", class: "form-label" %>
+              <%= select_tag :region_id, options_for_select(Region.all.map{ |r| [r.name, r.id] }), prompt: "Wybierz region", id: "region-select" %>
+              <div class="form-group">
+                <%= f.label :parking_spot_id, "Miejsce", class: "form-label" %>
+                <%= f.select :parking_spot_id, options_for_select(ParkingSpot.where(available: true).map{ |ps| [ps.name, ps.id] }), {}, class: "form-select" %>
+              </div>
+            <% end %>
+
+            <%= f.hidden_field :user_id, value: current_user.id %>
+
+            <div class="form-group">
+              <%= f.label :first_name, "Imię", class: "form-label" %>
+              <%= f.text_field :first_name, value: @reservation.user.first_name, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :last_name, "Nazwisko", class: "form-label" %>
+              <%= f.text_field :last_name, value: @reservation.user.last_name, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :phone, "Telefon", class: "form-label" %>
+              <%= f.text_field :phone, value: @reservation.user.phone, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :license_plate, "Numer tablicy rejestracyjnej", class: "form-label" %>
+              <%= f.text_field :license_plate, value: @reservation.license_plate, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :reservation_date, "Rezerwacja na dzień", class: "form-label" %>
+              <%= f.date_field :reservation_date, value: @reservation.reservation_date, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :reservation_time, "Godzina", class: "form-label" %>
+              <%= f.time_select :reservation_time, { class: 'form-control' }, value: @reservation.reservation_time %>
+            </div>
+
+            <div class="form-group">
+            <%= f.label :duration, "Czas rezerwacji <i> orientacyjnie </i>".html_safe, class: "form-label" %>
+            <%= f.select :duration, options_for_select([["30 minut", 30], ["1 godzina", 60], ["2 godziny", 120], ["3 godziny", 180], ["4 godziny", 240]]), {}, class: "form-select" %>
+            </div>
+
+
+            <div class="form-group">
+            <%= f.submit "Zapisz", class: "btn btn-primary" %>
+            </div>
+            <% end %>        
+            </div>
+            <div class="card-footer">
+      <%= link_to "Powrót", root_path, class: "btn btn-secondary" %>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
