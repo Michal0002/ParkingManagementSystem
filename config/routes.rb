@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   get "home/reservations", as: "reservations_history"
   get "home/reservations_current", as: "reservations_current"
+  get 'get_parking_spots', to: 'reservations#get_parking_spots'
+
 end

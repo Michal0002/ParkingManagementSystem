@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_10_113215) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_10_115038) do
   create_table "parking_spots", force: :cascade do |t|
     t.string "name"
-    t.string "region"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "available", default: true
+    t.integer "region_id", null: false
+    t.index ["region_id"], name: "index_parking_spots_on_region_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -49,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_113215) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "parking_spots", "regions"
   add_foreign_key "reservations", "parking_spots"
   add_foreign_key "reservations", "users"
 end

@@ -5,23 +5,34 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
+    <%= javascript_include_tag "parking_spots"%>
   </head>
 
   <body>
   <%= render "nav/nav" %>
+  
       <% if flash[:notice] %>
-        <div class="alert alert-success fixed-top" role="alert">
+        <div class="alert alert-success fixed-top flash" role="alert">
           <p class="notice my-0"><%= notice %></p>
         </div>
       <% end %>
       <% if flash[:alert]%>
-        <div class="alert alert-warning fixed-top" role="alert">
+        <div class="alert alert-warning fixed-top flash" role="alert">
           <p class="alert my-0"><%= alert %></p>
         </div>
       <% end %>
+
     <%= yield %>
+
+      <script>
+    $(document).ready(function() {
+      setTimeout(function(){
+        $('.flash').fadeOut('slow');
+      }, 3000);
+    });
+  </script>
   </body>
 </html>
