@@ -57,8 +57,9 @@
               <%= f.label :duration, "Czas rezerwacji <i> orientacyjnie </i>".html_safe, class: "form-label" %>
               <%= f.select :duration, options_for_select([['15 minut', 15], ['30 minut', 30], ['Więcej niż 60 minut', 60]]), { include_blank: true }, { class: 'form-control' } %>
             </div>
-
-<br/>
+            <br/>
+              <%= recaptcha_tags %>
+            <br/>
             <%= f.submit "Zarezerwuj", class: "btn btn-primary btn-block mb-3" %>
           <% end %>
         </div>

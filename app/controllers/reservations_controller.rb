@@ -11,7 +11,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     parking_spot = ParkingSpot.find(reservation_params[:parking_spot_id])
   
-    if parking_spot.available? && @reservation.save
+    if parking_spot.available? && @reservation.save 
       # rezerwacja została pomyślnie utworzona
       parking_spot.update(available: false)
       UserMailer.activation_link(@reservation).deliver_now
