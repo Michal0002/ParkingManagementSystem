@@ -11,7 +11,7 @@ module Parkingmanagement
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.i18n.default_locale = :pl
-
+    config.assets.precompile += %w[active_admin.css active_admin.js]
 
 
 

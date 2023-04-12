@@ -18,6 +18,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'i18n'
 gem "recaptcha"
+gem 'sass-rails'
 gem 'activeadmin'
 gem 'chartkick'
 group :development, :test do
