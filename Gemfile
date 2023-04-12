@@ -18,6 +18,8 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'i18n'
 gem "recaptcha"
+gem 'activeadmin'
+gem 'chartkick'
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
