@@ -11,10 +11,10 @@
               <%= link_to "Historia rezerwacji parkingowej", root_path, class: "btn btn-primary btn-block mb-3" %>
             </div>
           </div>
-        <% elsif current_user.role == "worker" %>
+        <% elsif current_user.role == "employee" %>
           <div class="form-container">
             <div class="form-box">
-              <%= link_to "Zarządzaj parkingiem", root_path, class: "btn btn-primary btn-block mb-3" %>
+              <%= link_to "Wykonaj rezerwację w imieniu", new_reservation_path, class: "btn btn-primary btn-block mb-3" %>
               <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary btn-block" %>
             </div>
           </div>
