@@ -5,7 +5,8 @@ ActiveAdmin.setup do |config|
   # for each of the active admin pages.
   #
   config.site_title = "Parkingmanagement"
-
+  config.register_javascript "http://code.highcharts.com/highcharts.js"
+  config.register_javascript "chartkick.js"
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #

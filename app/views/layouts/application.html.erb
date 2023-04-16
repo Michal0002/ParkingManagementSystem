@@ -9,6 +9,9 @@
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
     <%= javascript_include_tag "parking_spots"%>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+    <%= javascript_include_tag "chartkick" %>
+    <%= javascript_include_tag "active_admin" %>
   </head>
 
   <body>
@@ -36,3 +39,5 @@
   </script>
   </body>
 </html>
+<%=           pie_chart ParkingSpot.group(:available).count, library: { legend: { position: 'bottom' } } 
+%>
