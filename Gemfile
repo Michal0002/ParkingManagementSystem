@@ -20,6 +20,7 @@ gem 'i18n'
 gem "recaptcha"
 gem 'sass-rails'
 gem 'activeadmin'
+gem 'faker'
 gem 'chartkick'
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

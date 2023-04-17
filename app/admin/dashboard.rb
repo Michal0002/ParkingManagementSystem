@@ -14,6 +14,16 @@ ActiveAdmin.register_page "Dashboard" do
           }
         end
       end
+      column do
+        panel "Liczba użytkowników systemu" do
+          data = User.group(:role).count
+          data = { "Klienci" => data['client'], "Pracownicy" => data['employee'] }
+          bar_chart data, library: {
+            colors: ["#55efd4", "#ff7622"], 
+            title: { text: "Liczba użytkowników systemu", align: "center" }
+          }
+        end
+      end
     end
   end
 end

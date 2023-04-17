@@ -17,3 +17,29 @@ pl:
             duration:
               blank: "jest wymagany"
               
+  date:
+      month_names:
+      - nil
+      - styczeń
+      - luty
+      - marzec
+      - kwiecień
+      - maj
+      - czerwiec
+      - lipiec
+      - sierpień
+      - wrzesień
+      - październik
+      - listopad
+      - grudzień
+      formats:
+        default: "%Y-%m-%d"
+        short: "%d %b"
+        long: "%d %B %Y"
+  time:
+    formats:
+      default: "%H:%M:%S"
+      short: "%d %b %H:%M"
+      long: "%d %B %Y %H:%M:%S"
+
+
