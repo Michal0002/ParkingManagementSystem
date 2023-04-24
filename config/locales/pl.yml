@@ -7,15 +7,18 @@ pl:
       reservation:
         license_plate: "Numer tablicy rejestracyjnej"
         duration: "Czas rezerwacji"
+        reservation_date: "Data rezerwacji"
     errors:
       models:
         reservation:
           attributes:
             license_plate:
               blank: "jest wymagany"
-              invalid: "jest w nieprawidłowym formacie -> XX-1234"
+              invalid: "jest w nieprawidłowym formacie -> XXX-1234"
             duration:
               blank: "jest wymagany"
+            reservation_date:
+              blank: "jest pusta"
               
   date:
       month_names:

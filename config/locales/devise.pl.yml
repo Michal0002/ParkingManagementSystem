@@ -39,6 +39,8 @@ pl:
               too_short: "jest zbyt krótkie (minimum to %{count} znaków)"
             phone:
               blank: "nie może być pusty"
+              wrong_length: "dopuszczalna liczba znaków: 9"
+              invalid: "Nieprawidłowy format"
   devise:
     failure:
       invalid: "Nieprawidłowe dane logowania."

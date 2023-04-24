@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   get 'get_parking_spots', to: 'reservations#get_parking_spots'
   delete 'reservations/:id', to: 'reservations#destroy', as: 'delete_reservation'
   get 'reservations/:id/activate', to: 'reservations#activate', as: 'activate_reservation'
-
+  get 'home/search', as: "search_reservations"
 end

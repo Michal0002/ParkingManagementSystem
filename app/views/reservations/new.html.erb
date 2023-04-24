@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row justify-content-center align-items-center" style="height: 100vh;">
+  <div class="row justify-content-center align-items-center" style="padding-top: 6%; padding-bottom: 5%">
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
@@ -8,19 +8,13 @@
 <div class="card-body">
   <%= render "errors/errors" %>
           <%= form_for @reservation do |f| %>
-            <% if current_user.employee? %>
-              <div class="form-group">
-                <%= f.label :user_id, class: "form-label" %>
-                <%= f.select :user_id, options_for_select(User.client.map{ |u| [u.first_name + " " + u.last_name, u.id] }), {}, class: "form-select" %>
-              </div>
-            <% else %>
+
               <%= f.label :region_id, "Region parkingu:", class: "form-label" %>
               <%= select_tag :region_id, options_for_select(Region.all.map{ |r| [r.name, r.id] }), prompt: "Wybierz region", id: "region-select" %>
               <div class="form-group">
                 <%= f.label :parking_spot_id, "Miejsce", class: "form-label" %>
                 <%= f.select :parking_spot_id, options_for_select(ParkingSpot.where(available: true).map{ |ps| [ps.name, ps.id] }), {}, class: "form-select" %>
              </div>
-            <% end %>
 
               <%= f.hidden_field :user_id, value: current_user.id %>
 

@@ -1,3 +1,19 @@
-<h1>Aktywuj swoją rezerwację</h1>
-<p>Aby aktywować swoją rezerwację, kliknij w poniższy link:</p>
+<h1>Prośba o rezerwacje miejsca parkingowego.</h1>
+<h2> PAMIĘTAJ! Po pomyślnej aktywacji miejsca parkingowego, przejdź do zakładki "Twoje rezerwacje" aby dokonać opłaty za miejsce parkingowe </h2>
+<h3> Szczegóły dot. rezerwacji: </h3>
+
+<p> <i> Dane osobowe: </i> </p>
+<%= @reservation.user.first_name + " " + @reservation.user.last_name %>
+<p> tel. <%= @reservation.user.phone %>
+<p> Miejsce zarezerwowane dla samochodu o numerze tablicy rejestracyjnej <%= @reservation.license_plate %> </p>
+<p> Rezerwacja na dzień: <%= @reservation.reservation_date.strftime("%d-%m-%Y") %> godz. <%= @reservation.reservation_time.strftime('%H:%M') %>
+<p> Wybrane miejsce parkingowe: <%= @reservation.parking_spot.name  %> </p>
+<p> ...  <p>
+<% if @reservation.parking_spot.region == 3 %>
+<p> Wybrałeś miejsce parkingowe które znajduje się <b>regionie A (najbliżej wejścia) </b> warto zaznaczyć, że w tym rejonie, Twoje miejsce parkingowe znajduję się w odległości <b> nieprzekraczającej 100m </b> od wejścia. </p>
+<% else %>
+<p> Wybrałeś miejsce parkingowe które znajduje się <b>regionie B </b> warto zaznaczyć, że w tym rejonie, Twoje miejsce parkingowe znajduję się w odległości <b> przekraczającej 100m </b> od wejścia. </p>
+<% end %>
+
+<p>Jeśli dane się zgadzają proszę potwierdzić rezerwacje klikając w poniższy link: </p>
 <p><%= link_to "Aktywuj rezerwację", activate_reservation_url(@reservation) %></p>

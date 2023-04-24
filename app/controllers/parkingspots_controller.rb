@@ -1,4 +1,5 @@
 class ParkingSpotsController < ApplicationController
+  before_action :authenticate_user!
     def index
       @parking_spots = ParkingSpot.where(region_id: params[:region_id])
       respond_to do |format|

@@ -1,0 +1,53 @@
+<div class="container">
+<br/><br/><br/>
+<h1> Wyszukaj rezerwacje </h1>
+<%= form_tag search_reservations_path, method: :get do %>
+  <div class="form-group">
+    <%= label_tag :first_name, "Imię osoby rezerwującej" %>
+    <%= text_field_tag :first_name, params[:first_name], class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :last_name, "Nazwisko osoby rezerwującej" %>
+    <%= text_field_tag :last_name, params[:last_name], class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :phone, "Numer telefonu osoby rezerwującej" %>
+    <%= text_field_tag :phone, params[:first_name], class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :license_plate, "Numer tablicy rejestracyjnej osoby rezerwującej" %>
+    <%= text_field_tag :license_plate, params[:license_plate], class: "form-control" %>
+  </div>
+<br/>
+  <%= submit_tag "Szukaj", class: "btn btn-secondary" %>
+<% end %>
+<% if @reservations.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Numer tablicy rejestracyjnej</th>
+        <th>Miejsce parkingowe</th>
+        <th>Data </th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reservations.each do |reservation| %>
+        <tr>
+          <td><%= reservation.user.first_name %></td>
+          <td><%= reservation.user.last_name %></td>
+          <td><%= reservation.license_plate %></td>
+          <td><%= reservation.parking_spot.name %></td>
+          <td><%= reservation.reservation_date.strftime("%d-%m-%Y") %></td>
+          <td><%= reservation.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No reservations found.</p>
+<% end %>
+</div>

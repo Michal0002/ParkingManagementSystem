@@ -1,32 +1,47 @@
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <h1 class="text-center my-5">Parking Management System</h1>
-    <% if current_user %>
-        <% if current_user.role == "client" %>
-          <div class="form-container">
-            <div class="form-box">
-              <%= link_to "Wykonaj rezerwację", new_reservation_path, class: "btn btn-primary btn-block mb-3" %>
-              <%= link_to "Rezerwacje parkingowe", reservations_current_path, class: "btn btn-primary btn-block mb-3" %>
-              <%= link_to "Historia rezerwacji parkingowej", root_path, class: "btn btn-primary btn-block mb-3" %>
-            </div>
-          </div>
-        <% elsif current_user.role == "employee" %>
-          <div class="form-container">
-            <div class="form-box">
-              <%= link_to "Wykonaj rezerwację w imieniu", new_reservation_path, class: "btn btn-primary btn-block mb-3" %>
-              <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary btn-block" %>
-            </div>
-          </div>
+<div class="container" style="padding-top:10%"> 
+  <div class="row">
+    <div class="col-lg-4">
+        <div class="d-grid gap-3 employee-info">
+      <h2 class="text-center  p-2 rounded-pill" style="border-bottom: 1px solid black">Mapa parkingu</h2>
+        <a href="parking_map.jpg" target="_blank">
+          <img src="parking_map.jpg" alt="Parking" class="img-fluid float-right" style="border-radius: 5%;border: 1px grey groove;">
+        </a>
+        </div>
+    </div>
+    <div class="col-lg-4 bg-secondary rounded">
+      <br>
+      <div class="d-grid gap-3">
+      <% if current_user && current_user.role == "employee" %>
+        <h2 class="text-center text-white p-2 rounded" style="border-bottom: 1px solid white">Dostępne opcje</h2>
+          <%= link_to "Wykonaj rezerwację w imieniu", new_reservation_path, class: "btn btn-primary btn-block mb-3" %>
+          <%= link_to "Szukaj rezerwacji", search_reservations_path, class: "btn btn-primary btn-block mb-3" %>
+        <h2 class="text-center text-white p-2 rounded" style="border-bottom: 1px solid white"> </h2>
+        <% elsif current_user && current_user.role == "client" %>
+          <%= link_to "Wykonaj rezerwację", new_reservation_path, class: "btn btn-primary btn-block mb-3" %>
+          <%= link_to "Rezerwacje parkingowe", reservations_current_path, class: "btn btn-primary btn-block mb-3" %>
+          <%= link_to "Historia rezerwacji parkingowej", reservations_history_path, class: "btn btn-primary btn-block mb-3" %>
         <% else %>
-          <div class="form-container">
-            <div class="form-box">
-                <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %>
-            </div>
-          </div>
+          <h2 class="text-center text-white p-2 rounded">Musisz być zalogowany!</h2>
+          <%= link_to "Zaloguj się", new_user_session_path, class: "btn btn-primary btn-block mb-3" %>
         <% end %>
       </div>
     </div>
-  </div>
-<% end %>
+<div class="col-lg-4">
+  <% if current_user&.employee? %>
+    <div class="d-grid gap-3 employee-info">
+      <h2 class="text-center text-black p-2 rounded-pill" style="border-bottom: 1px solid black">Informacje o pracowniku</h2>
+      <% employee_data = current_user %>
+      <p>Imię: <%= employee_data.first_name %> </p>
+            <p>Nazwisko: <%= employee_data.last_name %> </p>
+                        <p>Telefon: <%= employee_data.phone %> </p>
 
+      <% for reservation in current_user.reservations %>
+        <p><%= "Zarezerwowane miejsce p.: #{reservation.parking_spot.name} Region: #{reservation.parking_spot.region.name}" %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+    </div>
+  </div>
+</div>

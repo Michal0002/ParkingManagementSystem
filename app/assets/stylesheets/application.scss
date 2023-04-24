@@ -18,9 +18,17 @@
 @import "bootstrap";
 body {
     border: none;
-    background-image: url("index-background.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #d0d0d0;
+}
+
+.col-lg-4 p {
+    border-bottom: 1px solid black;
+}
+
+.employee-info {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .form-container {

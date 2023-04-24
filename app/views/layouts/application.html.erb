@@ -12,16 +12,17 @@
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= javascript_include_tag "chartkick" %>
     <%= javascript_include_tag "active_admin" %>
+    
   </head>
 
   <body>
   <%= render "nav/nav" %>
-  
       <% if flash[:notice] %>
         <div class="alert alert-success fixed-top flash" role="alert">
           <p class="notice my-0"><%= notice %></p>
         </div>
       <% end %>
+      
       <% if flash[:alert]%>
         <div class="alert alert-warning fixed-top flash" role="alert">
           <p class="alert my-0"><%= alert %></p>
