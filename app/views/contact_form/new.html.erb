@@ -3,14 +3,14 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Kontakt</h3>
+          <h3 class="card-title">Skontakuj się z nami</h3>
                   </div>
             <div class="card-body">
       <%= form_for :contact, url: contact_path, html: {class: "needs-validation"} do |f| %>
 
         <div class="form-group">
           <%= f.label :name, "Imię" %>
-          <%= f.text_field :name, class: "form-control", required: true %>
+          <%= f.text_field :name, class: "form-control",placeholder:"Wprowadź swoje imię lub pseudonim", required: true %>
           <div class="invalid-feedback">
             Please provide a valid name.
           </div>
@@ -18,7 +18,7 @@
 
         <div class="form-group">
           <%= f.label :email, "Adres e-mail" %>
-          <%= f.email_field :email, class: "form-control", required: true %>
+          <%= f.email_field :email, class: "form-control", placeholder: "Wprowadź swój adres e-mail",required: true %>
           <div class="invalid-feedback">
             Please provide a valid email address.
           </div>
@@ -26,7 +26,7 @@
 
         <div class="form-group">
           <%= f.label :message, "Treść wiadomości" %>
-          <%= f.text_area :message, class: "form-control", rows: 5, required: true %>
+          <%= f.text_area :message, class: "form-control",placeholder: "Wprowadź treść wiadomości", rows: 5, required: true %>
         </div>
 <br/>
         <div class="actions">

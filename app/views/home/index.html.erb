@@ -36,7 +36,8 @@
                         <p>Telefon: <%= employee_data.phone %> </p>
 
       <% for reservation in current_user.reservations %>
-        <p><%= "Zarezerwowane miejsce p.: #{reservation.parking_spot.name} Region: #{reservation.parking_spot.region.name}" %></p>
+        <p>Przypisane miejsce parkingowe: <%= reservation.parking_spot.name %> </p>
+        <p> Region parkingowy: <%=reservation.parking_spot.region.name.split()[1]%> </p>
       <% end %>
     </div>
   <% end %>

@@ -22,6 +22,9 @@ gem 'sass-rails'
 gem 'activeadmin'
 gem 'faker'
 gem 'chartkick'
+gem 'annotate'
+gem 'railroady'
+gem 'rails-erd'
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
