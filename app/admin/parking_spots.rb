@@ -1,7 +1,7 @@
 ActiveAdmin.register ParkingSpot do
   permit_params :name, :available, :region_id
   menu label: 'Miejsca parkingowe'
-  index do
+  index title: proc{ "Miejsca parkingowe"}  do
     selectable_column
     column "Nazwa miejsca parkingowego", :name
     column "Dostępość", :available

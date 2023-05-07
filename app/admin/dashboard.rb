@@ -1,7 +1,7 @@
 require "chartkick"
-
 ActiveAdmin.register_page "Dashboard" do
-  content do
+  menu priority: 1, label: "Dashboard"
+  content title: "Strona główna Dashboardu" do    
     columns do
       column do
         panel "Wykres zajętości miejsc parkingowych" do

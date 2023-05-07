@@ -2,9 +2,9 @@
 
 ActiveAdmin.register User do
   permit_params :email, :password, :first_name, :last_name, :phone, :role
-
+  menu label: "Wszyscy użytkownicy systemu" 
   # Dodanie kolumn do tabeli
-  index do
+  index title: proc{"Wszyscy użytkownicy systemu"}do
     selectable_column
     id_column
     column :first_name

@@ -1,7 +1,7 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
   menu label: 'Administratorzy'
-  index do
+  index title: proc{ "Administratorzy"} do
     selectable_column
     id_column
     column :email

@@ -1,7 +1,7 @@
 ActiveAdmin.register Region do
   permit_params :name
   menu label: 'Regiony parkingowe'
-  index do
+  index title: proc{"Regiony parkingowe"} do
     selectable_column
     column "ID regionu", :id
     column "Nazwa regionu", :name

@@ -9,7 +9,7 @@ ActiveAdmin.register User, as: 'Employee' do
       end
     end 
 
-    index do
+    index title: proc{"Pracownicy"} do
       selectable_column
       column "Adres email", :email
       column "Imię", :first_name
