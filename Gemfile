@@ -20,6 +20,7 @@ gem 'i18n'
 gem "recaptcha"
 gem 'sass-rails'
 gem 'activeadmin'
+gem 'active_admin_flat_skin'
 gem 'faker'
 gem 'chartkick'
 gem 'annotate'
