@@ -1,11 +1,11 @@
+<div id="error_explanation">
 <% if @errors.present? && @errors.any? %>
-
-  <div id="error_explanation">
-    <h2>Formularz zawiera następujące błędy:</h2>
+  <h2>Formularz zawiera następujące błędy:</h2>
     <ul>
       <% @errors.each do |error| %>
         <li><%= error %></li>
-      <% end %>
     </ul>
-  </div>
+
+      <% end %>
 <% end %>
+</div>

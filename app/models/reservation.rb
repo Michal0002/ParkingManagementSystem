@@ -29,9 +29,15 @@ class Reservation < ApplicationRecord
   accepts_nested_attributes_for :user
 
   validates :reservation_date,:reservation_time,:status, :license_plate,:user_id,:parking_spot_id, :duration, presence: true
-  validates :license_plate, format: { with: /\A[A-Z]{3}\s?[A-Z0-9]{1,2}\s?[A-Z0-9]{1,3}\z/ }
+  validates :license_plate, format: { with: /\A[A-Z]{2,3}\s?[A-Z0-9]{4,5}\z/ }
+  validate :reservation_date_not_in_past
 
   enum :status, [:accepted, :waiting_for_accept, :canceled, :completed], default: :waiting_for_accept
 
-
+private 
+def reservation_date_not_in_past
+  if reservation_date.present? && reservation_date < Date.today
+    errors.add(:reservation_date, "nie może być przeszłą datą")
+  end
+end
 end

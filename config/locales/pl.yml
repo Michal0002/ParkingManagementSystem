@@ -19,6 +19,10 @@ pl:
               blank: "jest wymagany"
             reservation_date:
               blank: "jest pusta"
+            user:
+              required: "Pole użytkownik jest wymagane"
+            parking_spot:
+              required: "Pole miejsce parkingowe jest wymagane"
               
   date:
       month_names:

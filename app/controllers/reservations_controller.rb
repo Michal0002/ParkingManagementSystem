@@ -15,7 +15,6 @@ class ReservationsController < ApplicationController
       # rezerwacja została pomyślnie utworzona
       parking_spot.update(available: false)
       UserMailer.activation_link(@reservation).deliver_now
-
       redirect_to reservations_current_path, notice: "Rezerwacja utworzona pomyślnie. Sprawdź swoje rezerwacje."
     else
       flash[:errors] = @reservation.errors.full_messages
@@ -40,7 +39,7 @@ class ReservationsController < ApplicationController
     parking_spot = @reservation.parking_spot
     parking_spot.available = true
     parking_spot.save
-    redirect_to reservations_path, notice: "Rezerwacja została anulowana."
+    redirect_to root_path, notice: "Rezerwacja została anulowana."
   end
 
   def get_parking_spots
@@ -51,7 +50,7 @@ class ReservationsController < ApplicationController
   def activate
     @reservation = Reservation.find(params[:id])
     @reservation.update(status: 'accepted')
-    redirect_to reservations_path, notice: "Rezerwacja została zaakceptowana."
+    redirect_to root_path, notice: "Rezerwacja została zaakceptowana."
   end
   
   private

@@ -26,12 +26,12 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
-  validates :email, presence: true, uniqueness: true
-  validates :first_name, :last_name, length: { minimum: 3 }
-  validates :phone, length: { is: 9 }
+
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[\w\.-]+@([\w-]+\.)+[\w-]{2,4}\z/ }
+  validates :first_name, :last_name, presence: true, length: { minimum: 3 }
+  validates :phone, presence: true, length: { is: 9 }
+  
   after_create :send_welcome_email
-
-
   enum role: [:client, :employee]
   after_initialize :set_default_role, :if => :new_record?
 
@@ -45,6 +45,6 @@ class User < ApplicationRecord
   private
 
   def send_welcome_email
-    #UserMailer.welcome_email(self).deliver_now
+    UserMailer.welcome_email(self).deliver_now
   end
 end
