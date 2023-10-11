@@ -19,6 +19,7 @@ Rails.application.configure do
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   config.require_master_key = true
+  config.secret_key_base = 'a07377c42b37fbf29c4c17b5c40a3f959d2d9f07e569fc1a273da0fcd50cf70c5d31f128b8eee5446ad8af8c5e1097b176193f688b437d8371d8065172776ac0'
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -47,8 +48,7 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
-  config.secret_key_base = '370429bd1f51d1a1c3008e3691c38280'
-  config.hosts << "https://parking-management-system-kkpd.onrender.com"
+  config.hosts << "parking-management-system-kkpd.onrender.com"
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :info
