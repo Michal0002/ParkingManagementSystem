@@ -40,6 +40,15 @@
         <p> Region parkingowy: <%=reservation.parking_spot.region.name.split()[1]%> </p>
       <% end %>
     </div>
+    <% elsif current_user&.client? %>
+        <div class="d-grid gap-3 employee-info">
+      <h2 class="text-center text-black p-2 rounded-pill" style="border-bottom: 1px solid black">Twoje informacje</h2>
+      <% client_data = current_user %>
+      <p>Imię: <%= client_data.first_name %> </p>
+            <p>Nazwisko: <%= client_data.last_name %> </p>
+                        <p>Telefon: <%= client_data.phone %> </p>
+
+    </div>
   <% end %>
 </div>
 
