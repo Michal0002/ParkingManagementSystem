@@ -11,12 +11,12 @@
     <div class="col-lg-4 bg-secondary rounded">
       <br>
       <div class="d-grid gap-3">
-      <% if current_user && current_user.role == "employee" %>
+      <% if current_user&.employee? %>
         <h2 class="text-center text-white p-2 rounded" style="border-bottom: 1px solid white">Dostępne opcje</h2>
           <%= link_to "Wykonaj rezerwację w imieniu", new_reservation_path, class: "btn btn-primary btn-block mb-3" %>
           <%= link_to "Szukaj rezerwacji", search_reservations_path, class: "btn btn-primary btn-block mb-3" %>
         <h2 class="text-center text-white p-2 rounded" style="border-bottom: 1px solid white"> </h2>
-        <% elsif current_user && current_user.role == "client" %>
+        <% elsif current_user&.client? %>
           <%= link_to "Wykonaj rezerwację", new_reservation_path, class: "btn btn-primary btn-block mb-3" %>
           <%= link_to "Rezerwacje parkingowe", reservations_current_path, class: "btn btn-primary btn-block mb-3" %>
           <%= link_to "Historia rezerwacji parkingowej", reservations_history_path, class: "btn btn-primary btn-block mb-3" %>
@@ -39,6 +39,14 @@
         <p>Przypisane miejsce parkingowe: <%= reservation.parking_spot.name %> </p>
         <p> Region parkingowy: <%=reservation.parking_spot.region.name.split()[1]%> </p>
       <% end %>
+    </div>
+    <% elsif current_user&.client? %>
+        <div class="d-grid gap-3 employee-info">
+      <h2 class="text-center text-black p-2 rounded-pill" style="border-bottom: 1px solid black">Twoje informacje</h2>
+      <% client_data = current_user %>
+      <p>Imię: <%= client_data.first_name %> </p>
+            <p>Nazwisko: <%= client_data.last_name %> </p>
+                        <p>Telefon: <%= client_data.phone %> </p>
     </div>
   <% end %>
 </div>

@@ -18,8 +18,21 @@ Rails.application.configure do
   config.assets.precompile += ['active_admin.css']
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
+  config.require_master_key = true
+  config.secret_key_base = 'a07377c42b37fbf29c4c17b5c40a3f959d2d9f07e569fc1a273da0fcd50cf70c5d31f128b8eee5446ad8af8c5e1097b176193f688b437d8371d8065172776ac0'
 
+  config.action_mailer.default_options = { from: 'polska32115@wp.pl' }
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: 'parking.management.system.ror@gmail.com',
+    password: 'lbxfifarwkkcsvfu',
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
@@ -47,7 +60,7 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
-
+  config.hosts << "parking-management-system-kkpd.onrender.com"
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :info
