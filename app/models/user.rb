@@ -47,4 +47,8 @@ class User < ApplicationRecord
   def send_welcome_email
     UserMailer.welcome_email(self).deliver_now
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "email", "encrypted_password", "first_name", "id", "last_name", "phone", "remember_created_at", "reset_password_sent_at", "reset_password_token", "role", "updated_at"]
+  end
 end

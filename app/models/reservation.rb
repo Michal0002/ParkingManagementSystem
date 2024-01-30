@@ -33,7 +33,12 @@ class Reservation < ApplicationRecord
   validate :reservation_date_not_in_past
 
   enum :status, [:accepted, :waiting_for_accept, :canceled, :completed], default: :waiting_for_accept
-
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "duration", "id", "license_plate", "parking_spot_id", "reservation_date", "reservation_time", "status", "updated_at", "user_id"]
+  end
+  def self.ransackable_associations(auth_object = nil)
+    ["parking_spot", "user"]
+  end
 private 
 def reservation_date_not_in_past
   if reservation_date.present? && reservation_date < Date.today

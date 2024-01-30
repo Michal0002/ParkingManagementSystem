@@ -1,4 +1,5 @@
 ActiveAdmin.register Reservation do
+
   permit_params :reservation_date, :reservation_time, :status, :user_id, :parking_spot_id, :duration, :license_plate
   menu label: 'Bieżące rezerwacje'
   index title: proc{ "Bieżące rezerwacje"} do
@@ -9,4 +10,5 @@ ActiveAdmin.register Reservation do
     column "Miejsce parkingowe", :parking_spot
     column "Numer tablicy rejestracyjnej", :license_plate
   end
+  
 end

@@ -22,7 +22,6 @@
           <%= link_to "Historia rezerwacji parkingowej", reservations_history_path, class: "btn btn-primary btn-block mb-3" %>
         <% else %>
           <h2 class="text-center text-white p-2 rounded">Musisz być zalogowany!</h2>
-          <%= current_user.role %>
           <%= link_to "Zaloguj się", new_user_session_path, class: "btn btn-primary btn-block mb-3" %>
         <% end %>
       </div>

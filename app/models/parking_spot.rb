@@ -22,4 +22,10 @@ class ParkingSpot < ApplicationRecord
 
     validates :name, presence: true
     validates :region, presence: true
+    def self.ransackable_attributes(auth_object = nil)
+        ["available", "created_at", "id", "name", "region_id", "updated_at"]
+      end
+      def self.ransackable_associations(auth_object = nil)
+        ["region"]
+      end
 end
